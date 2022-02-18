@@ -1,0 +1,18 @@
+{% load static %}
+
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+</head>
+
+<body>
+  <h2 class="home-title">This is my website...</h2>
+{% if topic_list %}
+<ul class="topic_list">
+  {% for topic in topic_list %}
+  <li>
+    <a href="{% url 'polls:detail' topic.id %}">{{ topic.topic_text }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %} {% endif %}
+</body>
