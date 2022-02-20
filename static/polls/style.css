@@ -6,7 +6,11 @@ a {
   color: bisque;
 }
 
-.home-title{
+h3 {
+  color: rgb(15, 81, 223);
+}
+
+.home-title {
   color: blue;
   background-color: lightsteelblue;
 }
