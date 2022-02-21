@@ -7,11 +7,12 @@ a {
 }
 
 h3 {
+<<<<<<< HEAD
   color: green;
 }
 
 
-.home-title{
+.home-title { 
   color: blue;
   background-color: lightsteelblue;
 }
