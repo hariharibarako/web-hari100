@@ -10,8 +10,55 @@ h3 {
   color: green;
 }
 
-
-.home-title { 
+.home-title {
   color: blue;
   background-color: lightsteelblue;
+}
+
+html {
+  font-size: 100%;
+}
+body {
+  color: #383e45;
+  font-size: 0.9rem;
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+li {
+  list-style: none;
+}
+.site-title {
+  width: 120px;
+  line-height: 1px;
+  padding: 10px 0;
+}
+.site-title a {
+  display: block;
+}
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+#header ul {
+  display: flex;
+  padding: 10px 0;
+}
+#header li {
+  margin-left: 30px;
+}
+#header li a {
+  color: #24292e;
+}
+#header li a:hover {
+  opacity: 0.7;
 }

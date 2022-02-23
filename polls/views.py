@@ -23,3 +23,10 @@ def detail(request, topic_id):
     #     raise Http404("Question dows not exist.")
     topic = get_object_or_404(Topic, pk=topic_id)
     return render(request, 'polls/detail.html', {'topic':topic})
+
+def articles(request):
+    
+    context = {
+        'titles': ['How to use Django' ,'What kind of job is an accountant?', 'What is machine learning?']
+    }
+    return render(request, 'polls/articles.html', context)

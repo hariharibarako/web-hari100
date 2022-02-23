@@ -1,38 +1,111 @@
+<!DOCTYPE html>
 {% load static %}
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Profile</title>
+    <link rel="shortcut icon" href="{% static 'polls/img/saite_logo.png' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'polls/style.css' %}"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-2QWC1P8ZTE"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="{% static 'polls/style.css' %}"
-  />
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-2QWC1P8ZTE"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+      gtag("config", "G-2QWC1P8ZTE");
+    </script>
+  </head>
 
-    gtag("config", "G-2QWC1P8ZTE");
-  </script>
-</head>
+  <body>
+    <header id="header" class="wrapper">
+      <h1 class="site-title">
+        <a href="{% url 'polls:detail' 3 %}"
+          ><img src="{% static 'polls/img/profile_img.png' %}" alt="Profile"
+        /></a>
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'polls:articles' %}">Articles</a></li>
+          <li><a href="">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<body>
-  <h2 class="home-title">Website...</h2>
-  {% if topic_list %}
-  <ul class="topic_list">
-    {% for topic in topic_list %}
-    <li>
-      <a href="{% url 'polls:detail' topic.id %}">{{ topic.topic_text }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %} {% endif %}
+    <main>
+      <div id="mainvisual">
+        <img
+          src="{% static 'polls/img/library-3.jpeg' %}"
+          alt="テキストテキストテキスト"
+        />
+      </div>
 
-  <h3>Click on the topic you are interested in.</h3>
-</body>
+      <section id="about" class="wrapper">
+        <h2 class="section-title">You've come all the way!</h2>
+        <div class="content">
+          <img
+            src="{% static 'polls/img/saite_logo.png' %}"
+            alt="サイトアイコン"
+          />
+          <div class="text">
+            <h3 class="content-title">SOU</h3>
+            <p>
+              さまざまな分野で役に立ちそうな記事を掲載するサイトです。<br />
+              訪問してくれると喜びます　d(^_^o)<br />
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {% comment %} <section id="bicycle" class="wrapper">
+        <h2 class="section-title">Bicycle</h2>
+        <ul>
+          <li>
+            <img src="img/bicycle1.jpg" alt="テキストテキストテキスト" />
+            <h3 class="content-title">タイトルタイトル</h3>
+            <p>テキストテキストテキスト</p>
+          </li>
+          <li>
+            <img src="img/bicycle2.jpg" alt="テキストテキストテキスト" />
+            <h3 class="content-title">タイトルタイトル</h3>
+            <p>テキストテキストテキスト</p>
+          </li>
+          <li>
+            <img src="img/bicycle3.jpg" alt="テキストテキストテキスト" />
+            <h3 class="content-title">タイトルタイトル</h3>
+            <p>テキストテキストテキスト</p>
+          </li>
+        </ul>
+      </section> {% endcomment %}
+
+      {% comment %} <h2 class="home-title">Website...</h2>
+      {% if topic_list %}
+      <ul class="topic_list">
+        {% for topic in topic_list %}
+        <li>
+          <a href="{% url 'polls:detail' topic.id %}">{{ topic.topic_text }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %} {% endif %}
+
+      <h3>Click on the topic you are interested in.</h3> {% endcomment %}
+    </main>
+
+
+    <footer id="footer">
+      <hr size="2">
+      <p>&copy; 2020 Profile</p>
+    </footer>
+    
+  </body>
+</html>

@@ -10,6 +10,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     # /polls/5/
     path('<int:topic_id>/', views.detail, name='detail'),
+    path('articles/', views.articles, name='articles'),
     # /polls/5/results
     # path('<int:question_id>/results/', views.results, name='results'),
     # /polls/5/vote/
