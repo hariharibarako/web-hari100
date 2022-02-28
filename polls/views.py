@@ -26,7 +26,41 @@ def detail(request, topic_id):
 
 def articles(request):
     
+    topic_list = Topic.objects.all().order_by('-pub_date')
+    for topic in topic_list:
+        if len(topic.topic_text) > 100:
+            topic.topic_text = topic.topic_text[:100] + '.'*5
+    
+    ranking_list = Topic.objects.all().order_by('-nice')[:3]
+    rank = 1
+    for topic in ranking_list:
+        topic.title = "第" + str(rank) + "位：" + topic.title + " " 
+        
     context = {
-        'titles': ['How to use Django' ,'What kind of job is an accountant?', 'What is machine learning?']
+        'topic_list': topic_list,
+        'ranking_list': ranking_list
     }
     return render(request, 'polls/articles.html', context)
+
+def profile(request):
+    
+    topic_list = Topic.objects.all().order_by('-pub_date')
+    for topic in topic_list:
+        if len(topic.topic_text) > 100:
+            topic.topic_text = topic.topic_text[:100] + '.'*5
+    
+    ranking_list = Topic.objects.all().order_by('-nice')[:3]
+    rank = 1
+    for topic in ranking_list:
+        topic.title = "第" + str(rank) + "位：" + topic.title + " "
+    
+    profile_text = "IT業界の片隅にいるネコです。昔はSEや会計士をやってました。好きなフレームワークはDjango、Reactです。たまにSwiftも書きます。"
+    email = "1morimorimorita@gmail.com"
+    
+    context = {
+        'profile_text': profile_text,
+        'email': email,
+        'topic_list': topic_list,
+        'ranking_list': ranking_list
+    }
+    return render(request, 'polls/profile.html', context)

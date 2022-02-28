@@ -3,11 +3,11 @@
 }
 
 a {
-  color: bisque;
+  color: rgb(3, 2, 0);
 }
 
 h3 {
-  color: rgb(255, 255, 255);
+  color: rgb(3, 0, 0);
 }
 
 .home-title {
@@ -17,11 +17,12 @@ h3 {
 
 html {
   font-size: 100%;
-  background-color: #1a5836;
+  background-color: rgb(184 184 182);
 }
 body {
-  color: #ffffff;
+  color: #0a0000;
   font-size: 0.9rem;
+  margin: 0 0;
 }
 a {
   text-decoration: none;
@@ -75,7 +76,7 @@ li {
   margin-left: 30px;
 }
 #header li a {
-  color: #ffffff;
+  color: #050000;
 }
 #header li a:hover {
   opacity: 0.7;
@@ -90,7 +91,7 @@ Mainvisual
 #mainvisual img {
   width: 100%;
   max-width: 1920px;
-  height: 600px;
+  height: 300px;
   object-fit: cover;
 }
 

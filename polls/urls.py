@@ -7,10 +7,10 @@ app_name = 'polls'
 
 urlpatterns = [
     # /polls/
-    path('', views.index, name='index'),
-    # /polls/5/
-    path('<int:topic_id>/', views.detail, name='detail'),
+    path('', views.index, name='index'),    
     path('articles/', views.articles, name='articles'),
+    path('<int:topic_id>/', views.detail, name='detail'),
+    path('profile/', views.profile, name='profile'),
     # /polls/5/results
     # path('<int:question_id>/results/', views.results, name='results'),
     # /polls/5/vote/

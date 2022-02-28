@@ -8,7 +8,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'polls/style_articles.css' %}"
+      href="{% static 'polls/style_profile.css' %}"
     />
 
     <meta
@@ -43,7 +43,7 @@
         <ul class="wrapper">
           <li><a href="{% url 'polls:index' %}">HOME</a></li>
           <li><a href="{% url 'polls:articles' %}">ARTICLES</a></li>
-          <li><a href="{% url 'polls:profile' %}">CONTACT</a></li>
+          <li><a href="#">CONTACT</a></li>
         </ul>
       </nav>
     </header>
@@ -53,73 +53,22 @@
     <div class="other-body">
       <div id="container" class="wrapper">
         <main>
-          {% if topic_list %} {% for topic in topic_list %}
           <article>
             <h2 class="article-title">
-              <a href="{% url 'polls:detail' topic.id %}">{{ topic.title }}</a>
+              <a href="">PLOFILE</a>
             </h2>
-            <ul class="meta">
-              <li><a href="#">{{ topic.pub_date }}</a></li>
-              <li><a href="#">{{ topic.genre }}</a></li>
-            </ul>
-
-            <p class="text">{{ topic.topic_text | linebreaksbr }}</p>
-
-            <div class="readmore">
-              <a href="{% url 'polls:detail' topic.id %}">READ MORE</a>
-            </div>
+            <p class="text">{{ profile_text }}</p>
           </article>
-          {% endfor %} {% endif %} {% comment %}
+
           <article>
             <h2 class="article-title">
-              <a href="#">Today, HashiCorp is listed on NASDAQ. </a>
+              <a href="">CONTACT</a>
             </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/22</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
             <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
+              なにかお問い合わせがありましたら、こちらまでお願いします。
+              → {{ email }}
             </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
           </article>
-
-          <article>
-            <h2 class="article-title">
-              <a href="#">TSE will be reorganized.</a>
-            </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/23</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
-            <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
-          </article>
-
-          <article>
-            <h2 class="article-title">
-              <a href="#"
-                >There was an airstrike in eastern Ukraine last night.</a
-              >
-            </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/23</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
-            <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
-          </article>
-          {% endcomment %}
         </main>
 
         <aside id="sidebar">
@@ -136,9 +85,7 @@
             {% if ranking_list %} {% for topic in ranking_list %}
             <article>
               <a href="{% url 'polls:detail' topic.id %}">
-                <h3 class="article-title">
-                  {{ topic.title }} 
-                </h3>
+                <h3 class="article-title">{{ topic.title }}</h3>
                 <h4 class="article-rank">{{ topic.nice }} いいね</h4>
               </a>
             </article>
@@ -175,17 +122,17 @@
           <h3 class="footer-title">About</h3>
           <p>IT業界の隅に生息しているネコです。会計のことも少しわかります。</p>
           <ul class="about-list">
-            <li><a href="{% url 'polls:profile' %}" class="arrow">プロフィール詳細</a></li>
-            <li><a href="{% url 'polls:profile' %}" class="arrow">お問い合わせ</a></li>
+            <li><a href="#" class="arrow">プロフィール詳細</a></li>
+            <li><a href="#" class="arrow">お問い合わせ</a></li>
           </ul>
         </section>
 
         <section class="item">
           <h3 class="footer-title">Menu</h3>
           <ul class="menu-list">
-            <li><a href="{% url 'polls:index' %}">HOME</a></li>
-            <li><a href="{% url 'polls:articles' %}">ARTICLES</a></li>
-            <li><a href="{% url 'polls:profile' %}">CONTACT</a></li>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ARTICLES</a></li>
+            <li><a href="#">CONTACT</a></li>
           </ul>
         </section>
 
