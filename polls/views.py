@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.db.models import Q
 
 from .models import Topic
 
@@ -21,26 +22,76 @@ def detail(request, topic_id):
     #     question = Question.objects.get(pk=question_id)
     # except Question.DoesNotExist:
     #     raise Http404("Question dows not exist.")
+    if request.method == "POST":
+        nice = request.POST['nice']
+        print('押されました！')
+
     topic = get_object_or_404(Topic, pk=topic_id)
-    return render(request, 'polls/detail.html', {'topic':topic})
+
+    ranking_list = Topic.objects.all().order_by('-nice')[:5]
+    rank = 1
+    for ranking_topic in ranking_list:
+        ranking_topic.title = "第" + str(rank) + "位：" + ranking_topic.title
+        rank += 1
+    
+    context = {
+        'topic': topic,
+        'ranking_list': ranking_list
+    }
+
+    return render(request, 'polls/detail.html', context)
 
 def articles(request):
-    
-    topic_list = Topic.objects.all().order_by('-pub_date')
+    if request.method == "POST":
+        search_word = request.POST['search_word']
+        topic_list = Topic.objects.filter(Q(title__contains=search_word) | Q(topic_text__contains=search_word)).distinct()
+        # topic_list = Topic.objects.all().order_by('-pub_date')
+    else:
+        topic_list = Topic.objects.all().order_by('-pub_date')
+
     for topic in topic_list:
         if len(topic.topic_text) > 100:
             topic.topic_text = topic.topic_text[:100] + '.'*5
     
-    ranking_list = Topic.objects.all().order_by('-nice')[:3]
+    ranking_list = Topic.objects.all().order_by('-nice')[:5]
     rank = 1
     for topic in ranking_list:
-        topic.title = "第" + str(rank) + "位：" + topic.title + " " 
+        topic.title = "第" + str(rank) + "位：" + topic.title
+        rank += 1
+    
+    for topic in topic_list:
+        print(topic, topic.id)
         
     context = {
         'topic_list': topic_list,
         'ranking_list': ranking_list
     }
     return render(request, 'polls/articles.html', context)
+
+def articles_genre(request, topic_genre):
+    # メインのトピックリスト 
+    topic_list = Topic.objects.filter(genre=topic_genre).order_by('-pub_date')
+    for topic in topic_list:
+        if len(topic.topic_text) > 100:
+            topic.topic_text = topic.topic_text[:100] + '.'*5
+    
+    # いいねランキングのトピックリスト
+    ranking_list = Topic.objects.all().order_by('-nice')[:5]
+    rank = 1
+    for topic in ranking_list:
+        topic.title = "第" + str(rank) + "位：" + topic.title 
+        rank += 1
+        
+
+    topic_gen = topic_genre
+        
+    context = {
+        'topic_list': topic_list,
+        'ranking_list': ranking_list,
+        'topic_gen': topic_genre
+    }
+    return render(request, 'polls/articles.html', context)
+
 
 def profile(request):
     
@@ -49,7 +100,7 @@ def profile(request):
         if len(topic.topic_text) > 100:
             topic.topic_text = topic.topic_text[:100] + '.'*5
     
-    ranking_list = Topic.objects.all().order_by('-nice')[:3]
+    ranking_list = Topic.objects.all().order_by('-nice')[:5]
     rank = 1
     for topic in ranking_list:
         topic.title = "第" + str(rank) + "位：" + topic.title + " "

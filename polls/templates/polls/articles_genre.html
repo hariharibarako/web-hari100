@@ -1,0 +1,24 @@
+{% extends "./base/base.html" %}
+<!DOCTYPE html>
+
+{% block mainblock %}
+        <main>
+          {% if topic_list %} {% for topic in topic_list %}
+          <article>
+            <h2 class="article-title">
+              <a href="{% url 'polls:detail' topic.id %}">{{ topic.title }}</a>
+            </h2>
+            <ul class="meta">
+              <li><a href="#">{{ topic.pub_date }}</a></li>
+              <li><a href="#">{{ topic.genre }}</a></li>
+            </ul>
+
+            <p class="text">{{ topic.topic_text | linebreaksbr }}</p>
+
+            <div class="readmore">
+              <a href="{% url 'polls:detail' topic.id %}">READ MORE</a>
+            </div>
+          </article>
+          {% endfor %} {% endif %}
+        </main>
+{% endblock %}

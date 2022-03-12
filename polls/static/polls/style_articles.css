@@ -7,7 +7,7 @@
 
 html {
   font-size: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: #fae1e1;
 }
 body {
   color: #333;
@@ -24,6 +24,13 @@ img {
 }
 li {
   list-style: none;
+}
+h1 {
+  margin-top: 2px;
+  margin-bottom: 60px;
+  color: #3f0f0f;
+  font-size: 0.9rem;
+  font-style: italic;
 }
 /*
 コンテンツ幅を設定するための共通クラス
@@ -72,6 +79,11 @@ widthとheightで線の長さと高さを設定
   transform: translateY(3px);
 }
 
+article h4 {
+  color: #864242;
+  font-size: 0.9rem;
+}
+
 /*-------------------------------------------
 header
 -------------------------------------------*/
@@ -82,14 +94,21 @@ header
 */
 #header {
   width: 100%;
-  background-color: rgb(184 184 182);
+  background-color: #9e8282;
   position: fixed;
   z-index: 10;
 }
 #header .site-title {
-  padding: 40px 20px;
+  padding: 10px 0px;
+
   line-height: 1px;
   background-color: rgb(184 184 182);
+}
+
+.yoko {
+  padding: 15px 40px;
+  display: flex;
+  height: 60px;
 }
 /*
 「display: inline-block;」でリンクを親要素の範囲に広げる
@@ -99,6 +118,23 @@ inline-blockを設定している
 #header .site-title a {
   display: inline-block;
 }
+
+#header .yoko img {
+  height: 60px;
+  margin-right: 1000px;
+}
+
+#header .yoko h3 {
+  color: black;
+  font-size: 0.70rem;
+    width: 360px;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    justify-content: right;
+}
+
 #navi {
   background-color: #333;
 }
@@ -122,7 +158,7 @@ pickup
   display: flex;
   justify-content: space-between;
   padding-top: 150px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 #pickup article {
   width: 32%;
@@ -144,6 +180,20 @@ container
 main {
   width: 65%;
 }
+
+.search_form {
+  margin: 0 0 0 auto;
+  width: 230px;
+  display: block;
+}
+
+.input_button{
+  color: white;
+  background-color: #804a76;
+  width: 60px;
+  border-radius: 9px;
+}
+
 main article {
   margin-bottom: 80px;
 }
@@ -164,6 +214,45 @@ main li {
 }
 main .text {
   padding: 10px 40px 30px 40px;
+}
+
+.wrapper > li.menu__single {
+  position: relative;
+}
+
+li.menu__single ul.menu__second-level {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background: #072A24;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+li.menu__single:hover ul.menu__second-level {
+  top: 50px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.text_nice {
+  margin-top: 20px 0px;
+  text-align: right;
+  color: black;
+  padding: 50px 0px;
+  display: flex;
+  justify-content: flex-end;
+}
+.text_nice input{
+  width: 27px;
+  height: 27px;
+  margin-top: 15px;
+  margin-left: 5px;
+  background-color: grey;
+}
+.text_nice img{
+  width: 10px;
+  height: 10px;
 }
 
 /*-------------------------------------------
@@ -191,7 +280,8 @@ aside
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  margin-bottom: 30px;
+  margin-top:5px;
+  /* margin-bottom: 30px; */
 }
 .author .profile {
   font-size: 0.875rem;
@@ -238,7 +328,7 @@ footer
 -------------------------------------------*/
 #footer {
   font-size: 0.875rem;
-  background-color: rgb(184 184 182);
+  background-color: #9e8282;
 }
 #footer .content {
   display: flex;

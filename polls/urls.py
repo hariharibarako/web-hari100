@@ -9,6 +9,7 @@ urlpatterns = [
     # /polls/
     path('', views.index, name='index'),    
     path('articles/', views.articles, name='articles'),
+    path('articles/<str:topic_genre>/', views.articles_genre, name='articles_genre'),
     path('<int:topic_id>/', views.detail, name='detail'),
     path('profile/', views.profile, name='profile'),
     # /polls/5/results

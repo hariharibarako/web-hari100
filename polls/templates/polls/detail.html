@@ -1,196 +1,25 @@
-<!DOCTYPE html>
+{% extends "./base/base.html" %}
 {% load static %}
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <title>MosCafe</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'polls/style_detail.css' %}"
-    />
+<!DOCTYPE html>
 
-    <meta
-      name="description"
-      content="テキストテキストテキストテキストテキストテキストテキストテキス"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{% static 'polls/img/saite_logo.png' %}" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-2QWC1P8ZTE"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-2QWC1P8ZTE");
-    </script>
-  </head>
-
-  <body>
-    <header id="header">
-      <h1 class="site-title wrapper"></h1>
-      <nav id="navi">
-        <ul class="wrapper">
-          <li><a href="{% url 'polls:index' %}">HOME</a></li>
-          <li><a href="{% url 'polls:articles' %}">ARTICLES</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div id="pickup" class="wrapper">
-
-    </div>
-
-
-    <div class="other-body">
-        <div id="container" class="wrapper">
-          <main>
+{% block mainblock %}
+<main>
             {% if topic %}
             <h2>{{ topic.title }}</h2>
             <p>{{ topic.pub_date }}</p>
             <hr>
-            {{ topic.topic_text | linebreaksbr }} {% endif %}
+            {{ topic.topic_text | linebreaksbr }}
+            <div class="text_nice">
+                <h5>{{ topic.nice }}いいね</h5>
+                <form action="{% url 'polls:detail' topic.id %}" method="post">
+                    {% csrf_token %}
+                <img src="{% static 'polls/img/crap.png' %}" >
+                <input type="submit" name="nice" alt="nice!" value="">
+                </form>
+            </div>
+            {% endif %}
+</main>
+{% endblock %}
             
-          </main>
   
-          <aside id="sidebar">
-            <section class="author">
-              <img src="{% static 'polls/img/hati.jpeg' %}" />
-              <h3 class="side-title">BARA</h3>
-              <p class="profile">
-                IT業界の隅に生息しているネコです。会計のことも少しわかります。
-              </p>
-            </section>
-  
-            <section class="ranking">
-              <h3 class="side-title">Ranking</h3>
-              <article>
-                <a href="#">
-                  <h4 class="article-title">
-                    １位：---
-                  </h4>
-                </a>
-              </article>
-  
-              <article>
-                <a href="#">
-                  <h4 class="article-title">
-                    ２位：---
-                  </h4>
-                </a>
-              </article>
-  
-              <article>
-                <a href="#">
-                  <h4 class="article-title">
-                    ３位：---
-                  </h4>
-                </a>
-              </article>
-            </section>
-  
-            <section class="archive">
-              <h3 class="side-title">Archive</h3>
-              <ul>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-                <li><a href="#">XXXX年XX月</a>(XX)</li>
-              </ul>
-            </section>
-          </aside>
-        </div>
-      </div>
-  
-      <footer id="footer">
-        <div class="content wrapper">
-          <section class="item">
-            <h3 class="footer-title">About</h3>
-            <p>IT業界の隅に生息しているネコです。会計のことも少しわかります。</p>
-            <ul class="about-list">
-              <li><a href="#" class="arrow">プロフィール詳細</a></li>
-              <li><a href="#" class="arrow">お問い合わせ</a></li>
-            </ul>
-          </section>
-  
-          <section class="item">
-            <h3 class="footer-title">Menu</h3>
-            <ul class="menu-list">
-              <li><a href="#">HOME</a></li>
-              <li><a href="#">ARTICLES</a></li>
-              <li><a href="#">CONTACT</a></li>
-            </ul>
-          </section>
-  
-          <section class="item">
-            <h3 class="footer-title">Twitter</h3>
-            <a
-              class="twitter-timeline"
-              data-height="315"
-              href="https://twitter.com/TwitterJP?ref_src=twsrc%5Etfw"
-              >Tweets by TwitterJP</a
-            >
-            <script async src="https://platform.twitter.com/widgets.js"></script>
-          </section>
-        </div>
-
-
-
-    <footer id="footer">
-      <div class="content wrapper">
-        <section class="item">
-          <h3 class="footer-title">About</h3>
-          <p>IT業界の隅に生息しているネコです。会計のことも少しわかります。</p>
-          <ul class="about-list">
-            <li><a href="#" class="arrow">プロフィール詳細</a></li>
-            <li><a href="#" class="arrow">お問い合わせ</a></li>
-          </ul>
-        </section>
-
-        <section class="item">
-          <h3 class="footer-title">Menu</h3>
-          <ul class="menu-list">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">ARTICLES</a></li>
-            <li><a href="#">CONTACT</a></li>
-          </ul>
-        </section>
-
-        <section class="item">
-          <h3 class="footer-title">Twitter</h3>
-          <a
-            class="twitter-timeline"
-            data-height="315"
-            href="https://twitter.com/TwitterJP?ref_src=twsrc%5Etfw"
-            >Tweets by TwitterJP</a
-          >
-          <script async src="https://platform.twitter.com/widgets.js"></script>
-        </section>
-      </div>
-
-      <p class="copyright">&copy; Travel & Blog</p>
-    </footer>
-  </body>
-</html>

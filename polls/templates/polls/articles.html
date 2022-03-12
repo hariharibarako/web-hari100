@@ -1,58 +1,21 @@
+{% extends "./base/base.html" %}
 <!DOCTYPE html>
-{% load static %}
 
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <title>MosCafe</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'polls/style_articles.css' %}"
-    />
+{% block mainblock %}
 
-    <meta
-      name="description"
-      content="テキストテキストテキストテキストテキストテキストテキストテキス"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{% static 'polls/img/saite_logo.png' %}" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-2QWC1P8ZTE"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-2QWC1P8ZTE");
-    </script>
-  </head>
-
-  <body>
-    <header id="header">
-      <h1 class="site-title wrapper"></h1>
-      <nav id="navi">
-        <ul class="wrapper">
-          <li><a href="{% url 'polls:index' %}">HOME</a></li>
-          <li><a href="{% url 'polls:articles' %}">ARTICLES</a></li>
-          <li><a href="{% url 'polls:profile' %}">CONTACT</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <div id="pickup" class="wrapper"></div>
-
-    <div class="other-body">
-      <div id="container" class="wrapper">
         <main>
+          <div class="search_form"> 
+          <form action="{% url 'polls:articles' %}" method="post">
+            {% csrf_token %}
+              <label for="name"></label>
+              <input type="text" id="search_word" name="search_word" placeholder="Search word...">
+            <input class="input_button" type="submit" value="Search">
+          </form>
+        </div>
+
+          {% if topic_gen %}
+          <h1><a href="{% url 'polls:articles' %}">Articles</a> > 「{{ topic_gen }}」の記事一覧</h1>
+          {% endif %}
           {% if topic_list %} {% for topic in topic_list %}
           <article>
             <h2 class="article-title">
@@ -60,148 +23,18 @@
             </h2>
             <ul class="meta">
               <li><a href="#">{{ topic.pub_date }}</a></li>
-              <li><a href="#">{{ topic.genre }}</a></li>
+              <li><a href="{% url 'polls:articles_genre' topic.genre %}">{{ topic.genre }}</a></li>
+              <li><a>{{ topic.nice }} いいね!</a></li>
             </ul>
 
             <p class="text">{{ topic.topic_text | linebreaksbr }}</p>
 
             <div class="readmore">
               <a href="{% url 'polls:detail' topic.id %}">READ MORE</a>
+              
             </div>
+            
           </article>
-          {% endfor %} {% endif %} {% comment %}
-          <article>
-            <h2 class="article-title">
-              <a href="#">Today, HashiCorp is listed on NASDAQ. </a>
-            </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/22</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
-            <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
-          </article>
-
-          <article>
-            <h2 class="article-title">
-              <a href="#">TSE will be reorganized.</a>
-            </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/23</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
-            <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
-          </article>
-
-          <article>
-            <h2 class="article-title">
-              <a href="#"
-                >There was an airstrike in eastern Ukraine last night.</a
-              >
-            </h2>
-            <ul class="meta">
-              <li><a href="#">2022/02/23</a></li>
-              <li><a href="#">カテゴリ1</a></li>
-            </ul>
-            <p class="text">
-              本文テキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-            <div class="readmore"><a href="#">READ MORE</a></div>
-          </article>
-          {% endcomment %}
+          {% endfor %} {% endif %}
         </main>
-
-        <aside id="sidebar">
-          <section class="author">
-            <img src="{% static 'polls/img/hati.jpeg' %}" />
-            <h3 class="side-title">BARA</h3>
-            <p class="profile">
-              IT業界の隅に生息しているネコです。会計のことも少しわかります。
-            </p>
-          </section>
-
-          <section class="ranking">
-            <h3 class="side-title">Ranking</h3>
-            {% if ranking_list %} {% for topic in ranking_list %}
-            <article>
-              <a href="{% url 'polls:detail' topic.id %}">
-                <h3 class="article-title">
-                  {{ topic.title }} 
-                </h3>
-                <h4 class="article-rank">{{ topic.nice }} いいね</h4>
-              </a>
-            </article>
-            {% endfor %} {% endif %}
-          </section>
-
-          <section class="archive">
-            <h3 class="side-title">Archive</h3>
-            <ul>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-              <li><a href="#">XXXX年XX月</a>(XX)</li>
-            </ul>
-          </section>
-        </aside>
-      </div>
-    </div>
-
-    <footer id="footer">
-      <div class="content wrapper">
-        <section class="item">
-          <h3 class="footer-title">About</h3>
-          <p>IT業界の隅に生息しているネコです。会計のことも少しわかります。</p>
-          <ul class="about-list">
-            <li><a href="{% url 'polls:profile' %}" class="arrow">プロフィール詳細</a></li>
-            <li><a href="{% url 'polls:profile' %}" class="arrow">お問い合わせ</a></li>
-          </ul>
-        </section>
-
-        <section class="item">
-          <h3 class="footer-title">Menu</h3>
-          <ul class="menu-list">
-            <li><a href="{% url 'polls:index' %}">HOME</a></li>
-            <li><a href="{% url 'polls:articles' %}">ARTICLES</a></li>
-            <li><a href="{% url 'polls:profile' %}">CONTACT</a></li>
-          </ul>
-        </section>
-
-        <section class="item">
-          <h3 class="footer-title">Twitter</h3>
-          <a
-            class="twitter-timeline"
-            data-height="315"
-            href="https://twitter.com/TwitterJP?ref_src=twsrc%5Etfw"
-            >Tweets by TwitterJP</a
-          >
-          <script async src="https://platform.twitter.com/widgets.js"></script>
-        </section>
-      </div>
-
-      <p class="copyright">&copy; Travel & Blog</p>
-    </footer>
-  </body>
-</html>
+{% endblock %}
