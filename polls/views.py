@@ -34,9 +34,12 @@ def detail(request, topic_id):
         ranking_topic.title = "第" + str(rank) + "位：" + ranking_topic.title
         rank += 1
     
+    genre_list = Topic.objects.values_list('genre', flat=True)
+    
     context = {
         'topic': topic,
-        'ranking_list': ranking_list
+        'ranking_list': ranking_list,
+        'genre_list': set(genre_list)
     }
 
     return render(request, 'polls/detail.html', context)
@@ -61,11 +64,15 @@ def articles(request):
     
     for topic in topic_list:
         print(topic, topic.id)
+    
+    genre_list = Topic.objects.values_list('genre', flat=True)
         
     context = {
         'topic_list': topic_list,
-        'ranking_list': ranking_list
+        'ranking_list': ranking_list,
+        'genre_list': set(genre_list)
     }
+
     return render(request, 'polls/articles.html', context)
 
 def articles_genre(request, topic_genre):
@@ -84,11 +91,15 @@ def articles_genre(request, topic_genre):
         
 
     topic_gen = topic_genre
+
+    genre_list = Topic.objects.values_list('genre', flat=True)
+
         
     context = {
         'topic_list': topic_list,
         'ranking_list': ranking_list,
-        'topic_gen': topic_genre
+        'topic_gen': topic_genre,
+        'genre_list': set(genre_list)
     }
     return render(request, 'polls/articles.html', context)
 
@@ -107,11 +118,16 @@ def profile(request):
     
     profile_text = "IT業界の片隅にいるネコです。昔はSEや会計士をやってました。好きなフレームワークはDjango、Reactです。たまにSwiftも書きます。"
     email = "1morimorimorita@gmail.com"
+
+    genre_list = Topic.objects.values_list('genre', flat=True)
+
     
     context = {
         'profile_text': profile_text,
         'email': email,
         'topic_list': topic_list,
-        'ranking_list': ranking_list
+        'ranking_list': ranking_list,
+        'genre_list': set(genre_list)
+
     }
     return render(request, 'polls/profile.html', context)

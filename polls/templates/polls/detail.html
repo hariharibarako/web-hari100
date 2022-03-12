@@ -12,11 +12,13 @@
             {{ topic.topic_text | linebreaksbr }}
             <div class="text_nice">
                 <h5>{{ topic.nice }}いいね</h5>
+
                 <form action="{% url 'polls:detail' topic.id %}" method="post">
                     {% csrf_token %}
                 <img src="{% static 'polls/img/crap.png' %}" >
                 <input type="submit" name="nice" alt="nice!" value="">
                 </form>
+                
             </div>
             {% endif %}
 </main>
