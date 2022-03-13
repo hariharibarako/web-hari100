@@ -7,7 +7,7 @@
 
 html {
   font-size: 100%;
-  background-color: #fae1e1;
+  background-color: #f2f2f2;
 }
 body {
   color: #333;
@@ -94,7 +94,7 @@ header
 */
 #header {
   width: 100%;
-  background-color: #9e8282;
+  background-color: #470000;
   position: fixed;
   z-index: 10;
 }
@@ -129,11 +129,11 @@ inline-blockを設定している
   color: white;
   font-size: 3rem;
   font-family: Georgia, serif;
-  margin-right: 720px;
+  margin-right: 723px;
 }
 
 #header .yoko h3 {
-  color: black;
+  color: white;
   font-size: 0.70rem;
   width: 360px;
   font-style: italic;
@@ -144,7 +144,7 @@ inline-blockを設定している
 }
 
 #navi {
-  background-color: #333;
+  background-color: #840000;
 }
 #navi a {
   color: #fff;
@@ -211,8 +211,8 @@ main article {
 main .article-title {
   font-size: 1.5rem;
   margin: 10px 0 15px 0;
-  border-bottom: 0.18rem solid;
-  border-color: rgb(111 28 28);
+  border-bottom: 0.28rem solid;
+  border-color: #470000;
 }
 main ul {
   display: flex;
@@ -278,13 +278,13 @@ aside
   font-weight: bold;
   margin-bottom: 30px;
   border-bottom: 0.10rem solid;
-  border-color: rgb(111 28 28);
+  border-color: #470000;
 }
 .author {
   text-align: center;
   margin-bottom: 60px;
   border: 0.13rem solid;
-  border-color: rgb(111 28 28);
+  border-color: #470000;
   padding: 5px 5px;
 }
 .author img {
@@ -303,7 +303,7 @@ aside
   text-align: center;
   margin-bottom: 60px;
   /* border: 1px solid; */
-  border-color: rgb(151, 150, 150);
+  border-color: #470000;
   padding: 5px 5px;
 }
 
@@ -333,7 +333,7 @@ input:hover {
   text-align: center;
   margin-bottom: 60px;
   border: 0.13rem solid;
-  border-color: rgb(111 28 28);
+  border-color: #470000;
   padding: 5px 5px;
 }
 .ranking article {
@@ -384,7 +384,7 @@ input:hover {
   font-size: 0.875rem;
   /* border-top: solid 1px #777; */
   border-top: 0.08rem solid;
-  border-color: rgb(111 28 28);
+  border-color: #470000;
 
   padding: 20px;
   text-align: left;
@@ -396,7 +396,8 @@ footer
 -------------------------------------------*/
 #footer {
   font-size: 0.875rem;
-  background-color: #9e8282;
+  background-color: #470000;
+  color: white;
 }
 #footer .content {
   display: flex;
@@ -422,7 +423,7 @@ footer
   position: relative;
   display: inline-block;
   padding-left: 12px;
-  color: #333;
+  color: white;
 }
 /*
 疑似要素で三角矢印を表示
@@ -439,6 +440,7 @@ border～プロパティで三角を作り、positionで位置調整
   top: 50%;
   left: 0;
   margin-top: -6px;
+  color: white;
 }
 #footer .menu-list {
   border-bottom: solid 1px #777;
@@ -448,10 +450,19 @@ border～プロパティで三角を作り、positionで位置調整
   padding: 15px;
   text-align: left;
 }
+
+#footer .menu-list > li a{
+  border-top: solid 1px #777;
+  padding: 15px;
+  text-align: left;
+  color: white;
+}
+
 #footer .copyright {
   font-size: 0.75rem;
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0;
+  margin-bottom: 0px;
 }
 
 /*-------------------------------------------
