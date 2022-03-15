@@ -3,7 +3,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-choices = (('IT','IT'),('Accountant', 'Accountant'),('Everyday', 'Everyday'), ('Eye', 'Eye'), ('ハリネズミ', 'ハリネズミ'), ('Python(Django)','Python(Django)'), ('Swift', 'Swift'))
+choices = (('IT(その他)','IT(その他)'),('Accountant', 'Accountant'),('Everyday', 'Everyday'), ('Eye', 'Eye'), ('ハリネズミ', 'ハリネズミ'), ('Python(Django)','Python(Django)'), ('Swift', 'Swift'))
 
 class Topic(models.Model):
 
